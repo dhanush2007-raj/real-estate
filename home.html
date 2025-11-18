@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Real Estate Home</title>
+</head>
+<body>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+            margin: 0;
+            padding: 0;
+            background-size: auto 150%;
+            background-repeat: no-repeat;
+            transition: background 0.5s ease-in-out;
+        }
+        
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+         header{
+            width: 94%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            color: black;
+            animation: slideDown 0.5s ease-in-out;
+            transition: background 1s ease-in-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-15px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        header h2{
+            cursor: pointer;
+        }
+        .h5{
+            cursor: pointer;
+            margin: 0;
+            font-size: 30px;
+            width: auto;
+            align-items: center;
+            display: flex;
+            gap: 40px;
+            padding: 0 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .h5 h5 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: normal;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        header button, header select{
+            align-items: center;
+            text-align: center;
+            padding: 10px 20px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255,255, 255, 0.1));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 8px 10px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.3); 
+            cursor: pointer;
+            border: none;
+            color: black;
+            background-color: transparent;
+            transition: all 0.3s ease;
+            appearance: none;
+        }
+
+        header button:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        header select{
+            background: transparent;
+            border: none;
+        }
+
+        .menu-item {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .menu-item .dropdown ul li{
+            font-size: 20px;
+        }
+
+        .menu-item .dropdown {
+            display: none;
+            position: absolute;
+            top: 35px; 
+            left: 0;
+            border-radius: 24px;
+            padding: 30px;
+            min-width: 350px;
+            z-index: 9999;
+            animation: glassSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);            
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+            backdrop-filter: blur(120px) saturate(2.5) brightness(1.15);
+            -webkit-backdrop-filter: blur(120px) saturate(2.5) brightness(1.15);
+            box-shadow: 0 32px 64px rgba(31, 38, 135, 0.2), 0 8px 32px rgba(31, 38, 135, 0.15), 0 0 0 0.5px rgba(255, 255, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.1), 0 4px 16px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            transform: translateY(-8px);
+            overflow: hidden;
+        }
+
+        .menu-item .dropdown::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%, rgba(255, 255, 255, 0.1) 100%);
+            pointer-events: none;
+            border-radius: 24px;
+        }
+
+        @keyframes glassSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-15px) scale(0.9);
+                backdrop-filter: blur(0px) saturate(1) brightness(1);
+            }
+            50% {
+                backdrop-filter: blur(60px) saturate(1.8) brightness(1.08);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(-8px) scale(1);
+                backdrop-filter: blur(120px) saturate(2.5) brightness(1.15);
+            }
+        }
+
+        .menu-item:hover .dropdown {
+            display: block;
+        }
+
+        .menu-item .dropdown h4, .menu-item .dropdown h3 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .menu-item .dropdown h3 {
+            margin: 0 0 20px 0;
+            color: black;
+            letter-spacing: 0.5px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .menu-item .dropdown ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-item .dropdown ul li {
+            padding: 16px 20px;
+            margin: 6px 0;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 16px;
+            font-weight: 700;
+            color: black;
+            background:linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.25));
+            backdrop-filter: blur(25px) saturate(1.8);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .menu-item .dropdown ul li:hover {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.65), 
+                rgba(255, 255, 255, 0.45));
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(31, 38, 135, 0.2), 
+                0 4px 16px rgba(0, 0, 0, 0.1), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            color: black;
+            border-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(35px) saturate(3);
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+        }
+
+        .menu-item .dropdown ul li::before {
+            left: 100%;
+        }
+
+        .menu-item .dropdown ul li:hover {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.65), 
+                rgba(255, 255, 255, 0.45));
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(31, 38, 135, 0.2), 
+                0 4px 16px rgba(0, 0, 0, 0.1), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            color: black;
+            border-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(35px) stuarte(3);
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+        }
+
+        .header-content {
+            font-size: 30px;
+            color: black;
+            text-align: center;
+            margin-top: 200px;
+            margin-left: 20px;
+            margin-right: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+            filter: brightness(1);
+        }
+
+        .header-content .button-row {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+        }
+
+        .header-content button {
+            border-radius: 20px;
+            color: black;
+            width: 150px;
+            height: 50px;
+            background-color: transparent;
+            border: 1px inset silver;
+            background: linear-gradient(
+                135deg, 
+                rgba(255, 255, 255, 0.25), 
+                rgba(255,255, 255, 0.1)
+            );
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            cursor: pointer;
+            filter: brightness(1);
+            flex-direction: row;
+        }
+
+        .header-content button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .search-bar {
+            width: 700px;
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+            margin-top: 20px;
+            border-radius: 9px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            background: white;
+            border-radius: 50px;
+        }
+
+        .search-bar:focus-within {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .search-input {
+            display: flex;
+            align-items: center;
+            height: 40px;
+            border: none;
+            padding: 0 15px;
+            font-size: 16px;
+            outline: none;
+            color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .search-input input{
+            border: none;
+            outline: none;
+            padding: 10px;
+            width: 300px;
+            font-size: 14px;
+        }
+
+        .search-icon {
+            font-size: 14px;
+            color: #888;
+            margin-right: 5px;
+        }
+
+        select {
+            border: none;
+            outline: none;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            color: black;
+            background: transparent;
+        }
+
+        #searchBtn {
+            background: linear-gradient(
+                135deg, 
+                rgba(255, 255, 255, 0.25), 
+                rgba(255,255, 255, 0.1)
+            );
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        #searchBtn:hover{
+            background: #334ec9;
+        }
+
+        .card {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 100px;
+        }
+
+        .card h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .results {
+            margin-top: 20px;
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .result p {
+            margin: 8px 0;
+        }
+
+        .calculator-section {
+            background: #f9f9f9;
+            padding: 60px 0;
+            margin-top: 100px;
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .dark {
+            background: #121212;
+            color: white;
+        }
+
+        .dark header {
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.8));
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #333;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .dark header button,
+        .dark header select {
+            background: linear-gradient(135deg, rgba(50, 50, 50, 0.3), rgba(30, 30, 30, 0.2));
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .dark .header-content {
+            color: white;
+        }
+
+        .dark .header-content button {
+            color: white;
+        }
+
+        .dark .cities {
+            background-color: purple;
+        }
+
+        .dark header button:hover {
+            background: #333;
+        }
+
+        .dark .search-bar {
+            background: #2a2a2a;
+            border: 1px solid #444;
+        }
+
+        .dark .search-input input {
+            background: #2a2a2a;
+            color: white;
+        }
+
+        .dark .search-input input::placeholder {
+            color: #aaa;
+        }
+
+        .dark .search-input i {
+            color: #aaa;
+        }
+
+        .dark select {
+            background: #2a2a2a;
+            color: white;
+        }
+
+        .dark #searchBtn {
+            background: linear-gradient(135deg, rgba(50, 50, 50, 0.3), rgba(30, 30, 30, 0.2));
+            color: white;
+        }
+
+        .dark #searchBtn:hover {
+            background: #334ec9;
+        }
+
+        .dark .card {
+            background: #1e1e1e;
+            color: white;
+        }
+
+        .dark .card .input-group input,
+        .dark .card .input-group select {
+            background: #2a2a2a;
+            border-color: #444;
+            color: white;
+        }
+
+        .dark .results {
+            background: #333;
+            color: white;
+        }
+
+        .dark .calculator-section {
+            background: #121212;
+        }
+
+        .dark .menu-item .dropdown {
+            background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(30, 30, 30, 0.8));
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .dark .menu-item .dropdown h3,
+        .dark .menu-item .dropdown h4 {
+            color: white;
+        }
+
+        .dark .menu-item .dropdown ul li {
+            color: #ccc;
+        }
+
+        .dark .menu-item .dropdown ul li:hover {
+            color: white;
+        }
+
+        .dark .menu-item .dropdown form button {
+            background: #667eea;
+            color: white;
+            border: none;
+        }
+
+        .dark .menu-item .dropdown form button:hover {
+            background: #5a67d8;
+        }
+
+        .menu-item .dropdown form button:hover {
+            background: #5a67d8;
+        }
+
+        .right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-container img {
+            height: 60px;
+            width: auto;
+        }
+
+        .alert-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .alert-box {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 14px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            max-width: 350px;
+            text-align: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .alert-box h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #333;
+        }
+        .alert-box p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+        .alert-box button {
+            background: #334ec9;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .alert-box button:hover {
+            background: #2238a8;
+        }
+
+        .dark .alert-box {
+            background: #1e1e1e;
+            color: white;
+        }
+        .dark .alert-box h3 { 
+            color: white; 
+        }
+        .dark .alert-box p { 
+            color: #ccc; 
+        }
+
+        .dark #cities {
+            background: linear-gradient(135deg, rgba(50, 50, 50, 0.3), rgba(30, 30, 30, 0.2));
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .dark #cities option {
+            background: #333;
+            color: white;
+        }
+    </style>
+    <header>
+        <h2 class="logo-container">
+            <img src="logo1-removebg-preview.png" alt="">
+            Dhanush <br>Real Estate
+        </h2>
+        <div class="h5">
+            <div class="menu-item">
+                <h5>Buy</h5>
+                <div class="dropdown">
+                    <h3>Properties for sale in India</h3>
+                    <ul>
+                        <li>Villa</li>
+                        <li>Fully serviced House</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="menu-item">
+                <h5>Rent</h5>
+                <div class="dropdown">
+                    <h3>Rental Properties</h3>
+                    <ul>
+                        <li>Apartment</li>
+                        <li>Duplex</li>
+                        <li>Penthouse</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="menu-item">
+                <h5>Projects</h5>
+                <div class="dropdown">
+                    <h3>Upcoming Projects</h3>
+                    <ul>
+                        <li>Modern Apartment</li>
+                    </ul>
+                </div>
+            </div>
+            <h5>Developers</h5>
+            <h5>Areas</h5>
+            <div class="menu-item">
+                <h5>More</h5>
+                <div class="dropdown">
+                    <h3>More</h3>
+                    <ul>
+                        <li>
+                            <form action="contactus.html" method="get">
+                                <button type="submit">Contact Us</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <button id="theme-toggle" title="Toggle Dark Mode">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
+            </button>
+            <select name="cities" id="cities">
+                <option>All Cities(INDIA)</option>
+                <option value="bengaluru">Bengaluru</option>
+                <option value="hassan">Hassan</option>
+            </select>
+            <a href="propertylist.html"><button>Your Properties</button></a>
+        </div>
+    </header>
+    
+    <div class="header-content">
+        <h1>Find Your Dream Home</h1>
+        <div class="button-row">
+            <button>Sale</button>
+            <button>Rent</button>
+            <button>Projects</button>
+        </div>
+        <div class="search-bar">
+            <div class="search-input">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="City, Area, Community" id="searchField">
+            </div>
+            <select id="bedsSelect">
+                <option>Beds</option>
+                <option>Studio</option>
+                <option>1 Bed</option>
+                <option>2 Beds</option>
+                <option>3 Beds</option>
+                <option>4 Beds</option>
+                <option>5+ Beds</option>
+            </select>
+            <select id="propertySelect">
+                <option>Property Type</option>
+                <option>Office</option>
+                <option>Apartment</option>
+                <option>Villa</option>
+                <option>Townhouse</option>
+                <option>Penthouse</option>
+            </select>
+            <button id="searchBtn">Search</button>
+        </div>
+    </div>
+    <div class="alert-overlay" id="customAlert">
+        <div class="alert-box">
+            <h3>Search Details</h3>
+            <p id="alertMessage"></p>
+            <button onclick="closeAlert()">OK</button>
+        </div>
+    </div>
+
+    <div class="calculator-section">
+        <div class="container">
+            <div id="root"></div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+  const { useState, useEffect } = React;
+
+  function MortgageCalculator() {
+    const [homePrice, setHomePrice] = useState("0");
+    const [downPayment, setDownPayment] = useState("0");
+    const [interestRate, setInterestRate] = useState("0");
+    const [loanTerm, setLoanTerm] = useState("0");
+    const [calculation, setCalculation] = useState({
+      principalInterest: 0,
+      propertyTax: 0,
+      insurance: 0,
+      pmi: 0,
+      total: 0,
+    });
+
+    useEffect(() => {
+      calculateMortgage();
+    }, [homePrice, downPayment, interestRate, loanTerm]);
+
+    const calculateMortgage = () => {
+      const price = parseFloat(homePrice) || 0;
+      const down = parseFloat(downPayment) || 0;
+      const rate = parseFloat(interestRate) / 100 / 12 || 0;
+      const term = parseInt(loanTerm) * 12 || 0;
+
+      const loanAmount = price - down;
+
+      const monthlyPayment =
+        rate > 0
+          ? (loanAmount * rate * Math.pow(1 + rate, term)) /
+            (Math.pow(1 + rate, term) - 1)
+          : loanAmount / term;
+
+      const propertyTax = (price * 0.01) / 12;
+      const insurance = (price * 0.003) / 12;
+      const pmi = down / price < 0.2 ? (loanAmount * 0.005) / 12 : 0;
+
+      const total = (monthlyPayment || 0) + propertyTax + insurance + pmi;
+
+      setCalculation({
+        principalInterest: monthlyPayment || 0,
+        propertyTax: propertyTax || 0,
+        insurance: insurance || 0,
+        pmi: pmi || 0,
+        total: total || 0,
+      });
+    };
+
+    return (
+      <div className="card">
+        <h2>Mortgage Calculator</h2>
+        <div className="input-group">
+          <label>Home Price (<i className="fa-solid fa-indian-rupee-sign"></i>)</label>
+          <input
+            type="number"
+            value={homePrice}
+            onChange={(e) => setHomePrice(e.target.value)}
+          />
+        </div>
+        <div className="input-group">
+          <label>Down Payment (<i className="fa-solid fa-indian-rupee-sign"></i>)</label>
+          <input
+            type="number"
+            value={downPayment}
+            onChange={(e) => setDownPayment(e.target.value)}
+          />
+        </div>
+        <div className="input-group">
+          <label>Interest Rate (%)</label>
+          <input
+            type="number"
+            step="0.1"
+            value={interestRate}
+            onChange={(e) => setInterestRate(e.target.value)}
+          />
+        </div>
+        <div className="input-group">
+          <label>Loan Term (Years)</label>
+          <select value={loanTerm} onChange={(e) => setLoanTerm(e.target.value)}>
+            <option value="15">15 Years</option>
+            <option value="20">20 Years</option>
+            <option value="30">30 Years</option>
+          </select>
+        </div>
+
+        <div className="results">
+          <p><strong>Principal & Interest:</strong> <i className="fa-solid fa-indian-rupee-sign"></i>{calculation.principalInterest.toFixed(2)}</p>
+          <p><strong>Property Tax:</strong> <i className="fa-solid fa-indian-rupee-sign"></i>{calculation.propertyTax.toFixed(2)}</p>
+          <p><strong>Home Insurance:</strong> <i className="fa-solid fa-indian-rupee-sign"></i>{calculation.insurance.toFixed(2)}</p>
+          <p><strong>PMI (Private Mortgage Insurance):</strong> <i className="fa-solid fa-indian-rupee-sign"></i>{calculation.pmi.toFixed(2)}</p>
+          <h3><strong>Total Monthly Payment:</strong> <i className="fa-solid fa-indian-rupee-sign"></i>{calculation.total.toFixed(2)}</h3>
+        </div>
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(<MortgageCalculator />);
+</script>
+    
+    <script>
+        window.onload = () => {
+            document.getElementById("searchField").value = "";
+            document.getElementById("bedsSelect").selectedIndex = 0;
+            document.getElementById("propertySelect").selectedIndex = 0;
+        };
+
+        function showAlert(message) {
+            document.getElementById("alertMessage").innerText = message;
+            document.getElementById("customAlert").style.display = "flex";
+        }
+        function closeAlert() {
+            document.getElementById("customAlert").style.display = "none";
+        }
+
+        document.getElementById("searchBtn").addEventListener("click", () => {
+            const search = document.getElementById("searchField").value.trim();
+            const beds = document.getElementById("bedsSelect").value;
+            const properType = document.getElementById("propertySelect").value;
+            showAlert(`Search: ${search}\nBeds: ${beds}\nProperty Type: ${properType}`);
+        });
+
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = document.getElementById("theme-icon");
+        const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+        let isDarkMode = localStorage.getItem('darkMode') === 'true' || 
+                         (!localStorage.getItem('darkMode') && 
+                          window.matchMedia("(prefers-color-scheme: dark)").matches);
+        function setThemeColor(color) {
+            if (themeColorMeta) themeColorMeta.setAttribute("content", color);
+        }
+        function applyTheme() {
+            if (isDarkMode) {
+                document.body.classList.add("dark");
+                setThemeColor("#121212");
+                if (themeIcon) themeIcon.className = "fa-solid fa-sun";
+            } else {
+                document.body.classList.remove("dark");
+                setThemeColor("#ffffff");
+                if (themeIcon) themeIcon.className = "fa-solid fa-moon";
+            }
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+        if (themeToggle) {
+            themeToggle.addEventListener("click", () => {
+                isDarkMode = !isDarkMode;
+                applyTheme();
+            });
+        }
+        applyTheme();
+
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+            if (!localStorage.getItem('darkMode')) {
+                isDarkMode = e.matches;
+                applyTheme();
+            }
+        });
+    </script>
+</body>
+</html>
