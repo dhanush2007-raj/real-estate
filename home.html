@@ -14,11 +14,29 @@
             font-weight: lighter;
             margin: 0;
             padding: 0;
+            height: 100vh;
             background-size: auto 150%;
             background-repeat: no-repeat;
             transition: background 0.5s ease-in-out;
+            background: linear-gradient(180deg, #fdfdfd 0%, #f4f4f4 40%, #eaeaea 100%);
+            background-attachment: fixed;
+            background-size: 100% auto;
+            background-position: center;
         }
-        
+
+        body::before { 
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1505761671935-60b3a7427bad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% auto;
+            opacity: 01;
+            pointer-events: none;
+            z-index: -1;
+        }
 
         @keyframes fadeIn {
             from {
@@ -239,7 +257,7 @@
 
         .header-content {
             font-size: 30px;
-            color: black;
+            color: rgb(6, 245, 233);
             text-align: center;
             margin-top: 200px;
             margin-left: 20px;
@@ -259,7 +277,7 @@
 
         .header-content button {
             border-radius: 20px;
-            color: black;
+            color: rgb(6, 169, 245);
             width: 150px;
             height: 50px;
             background-color: transparent;
@@ -272,7 +290,7 @@
             backdrop-filter: blur(10px);
             padding: 10px 20px;
             cursor: pointer;
-            filter: brightness(1);
+            filter: brightness(2);
             flex-direction: row;
         }
 
@@ -351,7 +369,7 @@
         }
 
         #searchBtn:hover{
-            background: #334ec9;
+            background: rgb(6, 169, 245);
         }
 
         .card {
@@ -415,8 +433,26 @@
         }
 
         .dark {
-            background: #121212;
+            background: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 40%, #222831 100%);
+            background-attachment: fixed;
+            background-size: cover;
             color: white;
+        }
+
+        .dark::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1505761671935-60b3a7427bad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            opacity: 0.1;
+            filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.4));
+            pointer-events: none;
+            z-index: -1;
         }
 
         .dark header {
@@ -617,10 +653,15 @@
             background: #333;
             color: white;
         }
+
+        body, .dark {
+            transition: background 0.8s ease-in-out
+        }
+        
     </style>
     <header>
         <h2 class="logo-container">
-            <img src="logo1-removebg-preview.png" alt="">
+            <img src="logo.png" alt="">
             Dhanush <br>Real Estate
         </h2>
         <div class="h5">
@@ -679,7 +720,7 @@
                 <option value="bengaluru">Bengaluru</option>
                 <option value="hassan">Hassan</option>
             </select>
-            <a href="propertylist.html"><button>Your Properties</button></a>
+            <a href="main.html"><button>Your Properties</button></a>
         </div>
     </header>
     
